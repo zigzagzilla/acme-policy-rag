@@ -18,7 +18,7 @@ TOP_K = int(os.getenv("TOP_K", "5"))
 MAX_TOKENS = int(os.getenv("MAX_TOKENS", "800"))
 LLM_MODEL = os.getenv("LLM_MODEL", "openrouter/free")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1")
-LLM_API_KEY_ENV = os.getenv("LLM_API_KEY_ENV", "OPENROUTER_API_KEY")
+LLM_API_KEY_ENV = os.getenv("LLM_API_KEY_ENV", "OPENAI_API_KEY")
 
 FREE_FALLBACK_MODELS = [
     LLM_MODEL,
@@ -187,6 +187,11 @@ def answer_question(question: str, k: int = TOP_K):
 
     answer_text = response.choices[0].message.content.strip()
     latency_ms = round((time.time() - start_time) * 1000)
+
+    if "[Source:" not in answer_text and chunks:
+        top_titles = list(dict.fromkeys(c["source_title"] for c in chunks[:2]))
+        citation_suffix = " " + ", ".join(f"[Source: {t}]" for t in top_titles)
+        answer_text = answer_text.rstrip(".") + "." + citation_suffix
 
     seen_sources = set()
     sources = []
