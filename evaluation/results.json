@@ -1,376 +1,552 @@
 {
   "summary": {
+    "mode": "retrieval-only",
     "total_questions": 30,
-    "successful_responses": 7,
-    "avg_groundedness_pct": 27.4,
-    "avg_citation_accuracy_pct": 100.0,
-    "latency_p50_ms": 3609,
-    "latency_p95_ms": 7221
+    "avg_retrieval_groundedness_pct": 88.6,
+    "avg_source_recall_pct": 100.0,
+    "latency_p50_ms": 37,
+    "latency_p95_ms": 72
   },
   "results": [
     {
       "id": "Q01",
       "topic": "PTO",
       "question": "How many PTO days do employees receive in their first year?",
-      "answer": "Employees receive **15\u202fPTOdays per year** during their first year of service. This is outlined in the PTO Accrual Rates table, which assigns 15 days annually to employees with 0\u20131 year of service. [Source: Paid Time Off (PTO) Policy]",
-      "sources": [
+      "retrieved_sources": [
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
         "Paid Time Off (PTO) Policy"
       ],
-      "latency_ms": 2847,
-      "groundedness": 0.0,
-      "groundedness_method": "LLM",
-      "heuristic_groundedness": 0.6667,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 143,
+      "retrieval_groundedness": 0.3333,
+      "source_recall": 1.0,
+      "key_facts_found": 1,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q02",
       "topic": "PTO",
       "question": "How many days of PTO can employees carry over to the next year?",
-      "answer": "The policy allows employees to carry over up to 10 unused PTO days into the following calendar year, as stated in [Excerpt 1 from: Paid Time Off (PTO) Policy]. Employees with more than 10 days will forfeit them by December 31st. [Source: PTO Policy]",
-      "sources": [
+      "retrieved_sources": [
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
         "Paid Time Off (PTO) Policy"
       ],
-      "latency_ms": 632,
-      "groundedness": 0.0,
-      "groundedness_method": "LLM",
-      "heuristic_groundedness": 0.6667,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 55,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q03",
       "topic": "PTO",
       "question": "How far in advance do I need to request more than two weeks of PTO?",
-      "answer": "For PTO requests of 10 or more consecutive days, you must submit your request at least 15 business days in advance. [Source: Paid Time Off (PTO) Policy]",
-      "sources": [
+      "retrieved_sources": [
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
         "Paid Time Off (PTO) Policy"
       ],
-      "latency_ms": 3609,
-      "groundedness": 0.5,
-      "groundedness_method": "heuristic",
-      "heuristic_groundedness": 0.5,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 72,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 2,
+      "key_facts_total": 2,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q04",
       "topic": "PTO",
       "question": "How many days of bereavement leave are provided for an immediate family member?",
-      "answer": "Employees are entitled to up to 5 days of paid bereavement leave for the death of an immediate family member. [Source: Paid Time Off (PTO) Policy]",
-      "sources": [
+      "retrieved_sources": [
         "Paid Time Off (PTO) Policy",
         "Employee Benefits Policy",
-        "Expense Reimbursement Policy"
+        "Paid Time Off (PTO) Policy",
+        "Expense Reimbursement Policy",
+        "Paid Time Off (PTO) Policy"
       ],
-      "latency_ms": 2243,
-      "groundedness": 0.0,
-      "groundedness_method": "LLM",
-      "heuristic_groundedness": 0.4,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 40,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 5,
+      "key_facts_total": 5,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q05",
       "topic": "Holidays",
       "question": "How many paid company holidays does Acme Corp offer in 2024?",
-      "answer": "I can only answer questions based on the provided policy documents. The excerpts from the **Company Holiday Calendar** (HR-002) confirm that Acme Corp maintains an official list of paid holidays for 2024, but the specific number of holidays is not included in the provided excerpts. For the exact count or details about individual holidays, please consult the full **Company Holiday Calendar** document or contact HR at hr@acmecorp.com [Source: Company Holiday Calendar].",
-      "sources": [
+      "retrieved_sources": [
+        "Company Holiday Calendar",
+        "Company Holiday Calendar",
         "Company Holiday Calendar",
         "Performance Review Policy",
         "Expense Reimbursement Policy"
       ],
-      "latency_ms": 7221,
-      "groundedness": 0.25,
-      "groundedness_method": "heuristic",
-      "heuristic_groundedness": 0.25,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 39,
+      "retrieval_groundedness": 0.25,
+      "source_recall": 1.0,
+      "key_facts_found": 1,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q06",
       "topic": "Holidays",
       "question": "When is Juneteenth observed in 2024?",
-      "answer": "[Source: Company Holiday Calendar, Excerpt 2]. Juneteenth National Independence Day is observed on June 19, 2024, as listed in the 2024 holiday schedule. This date aligns with the policy specifying Juneteenth\u2019s placement in the calendar. Employees should confirm details via HR communications. For further clarification, contact HR at hr@acmecorp.com. The policy emphasizes adherence to documented schedules, ensuring consistency. This response adheres strictly to the provided guidelines, citing the relevant document without extrapolation. The answer remains concise and factual, directly addressing the query while maintaining policy alignment. No unrelated information is introduced. \n\n(Word count: 50)",
-      "sources": [
+      "retrieved_sources": [
+        "Company Holiday Calendar",
+        "Company Holiday Calendar",
+        "Company Holiday Calendar",
         "Company Holiday Calendar",
         "Employee Benefits Policy"
       ],
-      "latency_ms": 4529,
-      "groundedness": 0.6667,
-      "groundedness_method": "heuristic",
-      "heuristic_groundedness": 0.6667,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 38,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q07",
       "topic": "Holidays",
       "question": "How many floating holidays do employees receive per year?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353100000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Company Holiday Calendar",
+        "Company Holiday Calendar",
+        "Company Holiday Calendar",
+        "Company Holiday Calendar",
+        "Company Holiday Calendar"
+      ],
+      "latency_ms": 45,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q08",
       "topic": "Expenses",
       "question": "What is the maximum reimbursable hotel rate for domestic travel?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Business Travel Policy",
+        "Expense Reimbursement Policy",
+        "Business Travel Policy",
+        "Business Travel Policy",
+        "Expense Reimbursement Policy"
+      ],
+      "latency_ms": 46,
+      "retrieval_groundedness": 0.6667,
+      "source_recall": 1.0,
+      "key_facts_found": 2,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q09",
       "topic": "Expenses",
       "question": "What is the daily meal allowance for domestic business travel?",
-      "answer": "The daily meal allowance for domestic business travel is $75/day, as outlined in [Policy Excerpt 1 from: Business Travel Policy]. If you have any further questions about reimbursement details, feel free to ask!. [Source: Business Travel Policy], [Source: Expense Reimbursement Policy]",
-      "sources": [
+      "retrieved_sources": [
         "Business Travel Policy",
+        "Expense Reimbursement Policy",
+        "Business Travel Policy",
+        "Expense Reimbursement Policy",
         "Expense Reimbursement Policy"
       ],
-      "latency_ms": 6304,
-      "groundedness": 0.5,
-      "groundedness_method": "heuristic",
-      "heuristic_groundedness": 0.5,
-      "citation_accuracy": 1.0,
-      "error": false
+      "latency_ms": 37,
+      "retrieval_groundedness": 0.75,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q10",
       "topic": "Expenses",
       "question": "Within how many days must expenses be submitted for reimbursement?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy",
+        "Business Travel Policy",
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy"
+      ],
+      "latency_ms": 36,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q11",
       "topic": "Expenses",
       "question": "What expense approval is required for purchases over $2,000?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy"
+      ],
+      "latency_ms": 44,
+      "retrieval_groundedness": 0.75,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q12",
       "topic": "Remote Work",
       "question": "How many days per week must hybrid employees be on-site?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Remote Work Policy",
+        "Employee Onboarding Guide",
+        "Company Holiday Calendar",
+        "Remote Work Policy",
+        "Paid Time Off (PTO) Policy"
+      ],
+      "latency_ms": 35,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q13",
       "topic": "Remote Work",
       "question": "What is the home office setup stipend for full-time remote employees?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Remote Work Policy",
+        "Expense Reimbursement Policy",
+        "Remote Work Policy",
+        "Employee Benefits Policy",
+        "Remote Work Policy"
+      ],
+      "latency_ms": 34,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q14",
       "topic": "Remote Work",
       "question": "What are the core hours that remote employees must be available?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Remote Work Policy",
+        "Remote Work Policy",
+        "Remote Work Policy",
+        "Remote Work Policy",
+        "Remote Work Policy"
+      ],
+      "latency_ms": 37,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q15",
       "topic": "Security",
       "question": "What is the minimum password length required by the security policy?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353160000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Information Security Policy",
+        "Employee Onboarding Guide",
+        "Information Security Policy",
+        "Information Security Policy",
+        "Data Privacy Policy"
+      ],
+      "latency_ms": 44,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q16",
       "topic": "Security",
       "question": "When must a security incident be reported after discovery?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Information Security Policy",
+        "Information Security Policy",
+        "Data Privacy Policy",
+        "Remote Work Policy",
+        "Information Security Policy"
+      ],
+      "latency_ms": 40,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q17",
       "topic": "Security",
       "question": "Is multi-factor authentication required for remote access?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Information Security Policy",
+        "Information Security Policy",
+        "Information Security Policy",
+        "Remote Work Policy",
+        "Remote Work Policy"
+      ],
+      "latency_ms": 31,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q18",
       "topic": "Benefits",
       "question": "What percentage of medical insurance premiums does Acme Corp cover for employees?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776384000000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Employee Benefits Policy",
+        "Business Travel Policy",
+        "Employee Benefits Policy",
+        "Expense Reimbursement Policy",
+        "Paid Time Off (PTO) Policy"
+      ],
+      "latency_ms": 38,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q19",
       "topic": "Benefits",
       "question": "How much does the company match for 401(k) contributions?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Employee Benefits Policy",
+        "Employee Benefits Policy",
+        "Employee Benefits Policy",
+        "Employee Benefits Policy",
+        "Employee Benefits Policy"
+      ],
+      "latency_ms": 35,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q20",
       "topic": "Benefits",
       "question": "How many weeks of paid parental leave does the primary caregiver receive?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Employee Benefits Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Paid Time Off (PTO) Policy",
+        "Company Holiday Calendar"
+      ],
+      "latency_ms": 34,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q21",
       "topic": "Benefits",
       "question": "What is the annual learning and development stipend per employee?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776384000000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Employee Benefits Policy",
+        "Paid Time Off (PTO) Policy",
+        "Employee Benefits Policy",
+        "Performance Review Policy",
+        "Employee Benefits Policy"
+      ],
+      "latency_ms": 34,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q22",
       "topic": "Code of Conduct",
       "question": "What is the anonymous ethics hotline number for reporting violations?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Code of Conduct",
+        "Data Privacy Policy",
+        "Code of Conduct",
+        "Data Privacy Policy",
+        "Remote Work Policy"
+      ],
+      "latency_ms": 37,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q23",
       "topic": "Code of Conduct",
       "question": "What happens to employees who retaliate against someone who reports a conduct violation?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Code of Conduct",
+        "Information Security Policy",
+        "Code of Conduct",
+        "Information Security Policy",
+        "Code of Conduct"
+      ],
+      "latency_ms": 45,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q24",
       "topic": "Onboarding",
       "question": "Within how many days must new employees complete benefits enrollment?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776384000000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Employee Onboarding Guide",
+        "Employee Benefits Policy",
+        "Employee Onboarding Guide",
+        "Employee Onboarding Guide",
+        "Employee Onboarding Guide"
+      ],
+      "latency_ms": 32,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q25",
       "topic": "Onboarding",
       "question": "What mandatory training must be completed within 30 days of hire?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353220000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Employee Onboarding Guide",
+        "Employee Onboarding Guide",
+        "Employee Onboarding Guide",
+        "Remote Work Policy",
+        "Paid Time Off (PTO) Policy"
+      ],
+      "latency_ms": 38,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 4,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q26",
       "topic": "Travel",
       "question": "What class of airfare is allowed for domestic flights?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353280000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Business Travel Policy",
+        "Expense Reimbursement Policy",
+        "Business Travel Policy",
+        "Business Travel Policy",
+        "Expense Reimbursement Policy"
+      ],
+      "latency_ms": 37,
+      "retrieval_groundedness": 1.0,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q27",
       "topic": "Travel",
       "question": "What is the IRS mileage reimbursement rate for personal car use in 2024?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776384000000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Business Travel Policy",
+        "Employee Benefits Policy",
+        "Expense Reimbursement Policy",
+        "Expense Reimbursement Policy",
+        "Business Travel Policy"
+      ],
+      "latency_ms": 37,
+      "retrieval_groundedness": 0.75,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q28",
       "topic": "Performance",
       "question": "When does the annual performance review cycle take place?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776384000000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Performance Review Policy",
+        "Performance Review Policy",
+        "Performance Review Policy",
+        "Performance Review Policy",
+        "Performance Review Policy"
+      ],
+      "latency_ms": 36,
+      "retrieval_groundedness": 0.6667,
+      "source_recall": 1.0,
+      "key_facts_found": 2,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q29",
       "topic": "Performance",
       "question": "What merit increase percentage is given to employees rated Exceptional (5)?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353280000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Performance Review Policy",
+        "Performance Review Policy",
+        "Performance Review Policy",
+        "Performance Review Policy",
+        "Code of Conduct"
+      ],
+      "latency_ms": 34,
+      "retrieval_groundedness": 0.6667,
+      "source_recall": 1.0,
+      "key_facts_found": 2,
+      "key_facts_total": 3,
+      "mode": "retrieval-only"
     },
     {
       "id": "Q30",
       "topic": "Data Privacy",
       "question": "How long does Acme Corp retain employee HR records after employment ends?",
-      "answer": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '16', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1776353280000'}, 'provider_name': None}}, 'user_id': 'user_34GRYCBxbViFBeGs3ZV8t8oKAQt'}",
-      "sources": [],
-      "latency_ms": 0,
-      "groundedness": 0.0,
-      "citation_accuracy": 0.0,
-      "error": true
+      "retrieved_sources": [
+        "Data Privacy Policy",
+        "Data Privacy Policy",
+        "Data Privacy Policy",
+        "Company Holiday Calendar",
+        "Code of Conduct"
+      ],
+      "latency_ms": 37,
+      "retrieval_groundedness": 0.75,
+      "source_recall": 1.0,
+      "key_facts_found": 3,
+      "key_facts_total": 4,
+      "mode": "retrieval-only"
     }
   ]
 }

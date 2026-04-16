@@ -149,27 +149,47 @@ The judge prompt presents the retrieved context, the question, and the answer, t
 
 ## 5. Evaluation Results
 
-> Full results are in `evaluation/results.md`. This section summarizes the key findings from the 7 completed responses.
+> Full results are in `evaluation/results.md` and `evaluation/results.json`.
 
-### 5.1 Citation Accuracy: 100%
+Two evaluation runs were conducted:
 
-All 7 answered questions included at least one `[Source: ...]` attribution referencing a retrieved document. This confirms the system prompt's citation constraint is being respected by the model.
+**Run 1 — End-to-end (LLM answers + heuristic scoring)**: 7/30 questions completed before hitting OpenRouter's 50 requests/day free-tier limit. Remaining 23 await the daily rate limit reset.
 
-### 5.2 Groundedness: 40–67% (heuristic)
+**Run 2 — Retrieval-only (all 30 questions, no API calls)**: Evaluates only the retrieval stage using local embedding + ChromaDB. All 30 questions completed successfully.
 
-The range reflects varying question complexity:
-- Simple factual lookups (Q01, Q02, Q06): 67% — the model reliably included the primary fact
-- Multi-fact questions (Q04, Q09): 40–50% — the model answered the main point but omitted secondary details
+### 5.1 Retrieval Stage Results (30/30 questions)
 
-The LLM judge scores are not reliable in this run — several clearly correct answers (Q01, Q02, Q04) were scored UNGROUNDED. This failure mode is documented in the results and attributed to the low capability of the free-tier judge model.
+| Metric | Value |
+|--------|-------|
+| Questions evaluated | 30/30 |
+| **Key-fact Recall** | **88.6%** |
+| **Source Recall** | **100%** |
+| Retrieval Latency p50 | **37 ms** |
+| Retrieval Latency p95 | **72 ms** |
 
-### 5.3 Latency: 3.2s p50, 7.2s p95
+**Key-fact recall at 88.6%** means the top-5 retrieved chunks contain the expected answer content for nearly all questions. The 11.4% gap corresponds to questions like Q01 (PTO accrual table split across chunks) and Q05 (holiday count not present in any single chunk).
 
-Response times are dominated by LLM generation (typically 2–6s), with retrieval contributing <100ms. This is acceptable for an internal tool but would benefit from response streaming to reduce perceived latency.
+**Source recall at 100%** confirms that ChromaDB always returns relevant chunks — the retrieval step never fails to find any matching content.
 
-### 5.4 Graceful Degradation (Q05)
+**Retrieval latency is excellent**: p50 of 37ms and p95 of 72ms. Since LLM generation dominates end-to-end latency, improving generation speed (streaming, smaller model, caching) is more impactful than retrieval optimization.
 
-Q05 asked for the exact number of paid holidays. The retrieved chunks referenced the Holiday Calendar document but did not include the specific count. Rather than fabricating an answer, the model explicitly stated the information was not in the excerpts and directed the user to consult the document or contact HR. This is the correct behavior for a grounded RAG system.
+### 5.2 End-to-end Results (7/30 questions, pending full re-run)
+
+| Metric | Value |
+|--------|-------|
+| Questions evaluated | 7/30 |
+| **Groundedness** | 27.4% (LLM judge) / ~53% (heuristic) |
+| **Citation Accuracy** | **100%** |
+| Answer Latency p50 | **3,609 ms** |
+| Answer Latency p95 | **7,221 ms** |
+
+**Citation accuracy: 100%** — every answer included at least one `[Source: ...]` attribution.
+
+**LLM judge groundedness was unreliable** (clearly correct answers marked UNGROUNDED). The heuristic score (~53%) better reflects actual answer quality. A dedicated judge model would resolve this.
+
+**Graceful degradation (Q05)**: When the retrieved chunks lacked the exact holiday count, the model correctly stated the information was not in the excerpts and directed the user to HR — the desired behavior for a grounded RAG system.
+
+Answer latency (3.6s p50) is dominated by LLM generation; retrieval accounts for <100ms as shown in Run 2.
 
 ---
 
