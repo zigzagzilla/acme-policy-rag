@@ -21,10 +21,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 load_dotenv()
 
-from rag import answer_question, get_embed_model, get_collection
+from rag import answer_question, get_embed_model, get_collection  # noqa: E402
 
 RANDOM_SEED = 42
 
@@ -41,7 +41,7 @@ def score_citation_accuracy(answer: str, sources: list) -> float:
     for src in sources:
         title_lower = src["title"].lower()
         key_word = title_lower.split()[0] if title_lower else ""
-        if key_word and f"source:" in answer_lower and key_word in answer_lower:
+        if key_word and "source:" in answer_lower and key_word in answer_lower:
             return 1.0
     if "[source:" in answer_lower:
         return 0.5
@@ -229,7 +229,7 @@ def run_evaluation(questions_path: str, output_path: str, use_llm_judge: bool = 
     }
 
     print(f"\n{'='*60}")
-    print(f"EVALUATION SUMMARY")
+    print("EVALUATION SUMMARY")
     print(f"{'='*60}")
     print(f"Questions evaluated:      {total}")
     print(f"Successful responses:     {n_valid}/{total}")
@@ -261,8 +261,8 @@ def write_results_md(summary: dict, results: list, output_path: str):
         "",
         f"**Date**: {time.strftime('%Y-%m-%d')}  ",
         f"**Model**: {os.getenv('LLM_MODEL', 'openrouter/free')}  ",
-        f"**Embedding model**: all-MiniLM-L6-v2  ",
-        f"**Vector store**: ChromaDB (local, cosine similarity)  ",
+        "**Embedding model**: all-MiniLM-L6-v2  ",
+        "**Vector store**: ChromaDB (local, cosine similarity)  ",
         f"**Top-k**: {os.getenv('TOP_K', '5')}",
         "",
         "---",

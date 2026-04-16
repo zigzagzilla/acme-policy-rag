@@ -86,7 +86,7 @@ def health():
         doc_count = collection.count()
         status = "healthy"
         indexed = True
-    except Exception as e:
+    except Exception:
         doc_count = 0
         status = "degraded"
         indexed = False
@@ -122,4 +122,4 @@ if __name__ == "__main__":
         print(f"⚠️  Warning: Could not connect to ChromaDB: {e}")
 
     print(f"Starting Flask app on port {port}...")
-    app.run(host="0.0.0.0", port=port, debug=debug)
+    app.run(host="0.0.0.0", port=port, debug=debug)  # nosec B104

@@ -16,9 +16,9 @@
 |--------|-------|-------|
 | Questions evaluated | 30 | |
 | Successful responses | **7 / 30** | 23 blocked by API rate limit |
-| **Groundedness** | **~36%** (LLM judge) / **~54%** (heuristic) | See caveat below |
+| **Groundedness** | **27.4%** (LLM judge) / **~53%** (heuristic) | See caveat below |
 | **Citation Accuracy** | **100%** | All 7 answers included `[Source: ...]` |
-| Latency p50 | **3,228 ms** | |
+| Latency p50 | **3,609 ms** | |
 | Latency p95 | **7,221 ms** | |
 
 ### Groundedness caveat
