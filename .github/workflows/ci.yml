@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Smoke test — import app module
+        run: python -c "import app; print('app module imports OK')"
+        env:
+          OPENAI_API_KEY: dummy-key-for-ci
+          LLM_BASE_URL: https://openrouter.ai/api/v1
+          LLM_MODEL: openrouter/free
+          LLM_API_KEY_ENV: OPENAI_API_KEY
+          CHROMA_PATH: /tmp/chroma_ci
+          POLICIES_DIR: ./policies
+
+      - name: Smoke test — import rag module
+        run: python -c "import rag; print('rag module imports OK')"
+        env:
+          OPENAI_API_KEY: dummy-key-for-ci
+          LLM_BASE_URL: https://openrouter.ai/api/v1
+          LLM_MODEL: openrouter/free
+          LLM_API_KEY_ENV: OPENAI_API_KEY
+          CHROMA_PATH: /tmp/chroma_ci
+          POLICIES_DIR: ./policies
+
+      - name: Smoke test — import ingest module
+        run: python -c "import ingest; print('ingest module imports OK')"
+        env:
+          OPENAI_API_KEY: dummy-key-for-ci
+          CHROMA_PATH: /tmp/chroma_ci
+          POLICIES_DIR: ./policies
+
+      - name: Verify policy documents exist
+        run: |
+          count=$(ls policies/*.md 2>/dev/null | wc -l)
+          echo "Found $count policy documents"
+          if [ "$count" -lt 5 ]; then
+            echo "ERROR: Expected at least 5 policy documents, found $count"
+            exit 1
+          fi
+
+      - name: Check health endpoint (dry run)
+        run: |
+          python -c "
+          from app import app
+          with app.test_client() as client:
+              resp = client.get('/health')
+              assert resp.status_code == 200, f'Health check failed: {resp.status_code}'
+              data = resp.get_json()
+              assert 'status' in data, 'Missing status field'
+              print('Health endpoint OK:', data)
+          "
+        env:
+          OPENAI_API_KEY: dummy-key-for-ci
+          LLM_BASE_URL: https://openrouter.ai/api/v1
+          LLM_MODEL: openrouter/free
+          LLM_API_KEY_ENV: OPENAI_API_KEY
+          CHROMA_PATH: /tmp/chroma_ci
+          POLICIES_DIR: ./policies

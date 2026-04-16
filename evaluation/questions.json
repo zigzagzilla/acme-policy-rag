@@ -1,0 +1,182 @@
+[
+  {
+    "id": "Q01",
+    "topic": "PTO",
+    "question": "How many PTO days do employees receive in their first year?",
+    "key_facts": ["15 days", "first year", "0-1 year"]
+  },
+  {
+    "id": "Q02",
+    "topic": "PTO",
+    "question": "How many days of PTO can employees carry over to the next year?",
+    "key_facts": ["10 days", "carryover", "December 31"]
+  },
+  {
+    "id": "Q03",
+    "topic": "PTO",
+    "question": "How far in advance do I need to request more than two weeks of PTO?",
+    "key_facts": ["15 business days", "10+ consecutive days"]
+  },
+  {
+    "id": "Q04",
+    "topic": "PTO",
+    "question": "How many days of bereavement leave are provided for an immediate family member?",
+    "key_facts": ["5 days", "immediate family", "spouse", "child", "parent"]
+  },
+  {
+    "id": "Q05",
+    "topic": "Holidays",
+    "question": "How many paid company holidays does Acme Corp offer in 2024?",
+    "key_facts": ["12", "11 full days", "2 half days", "holidays"]
+  },
+  {
+    "id": "Q06",
+    "topic": "Holidays",
+    "question": "When is Juneteenth observed in 2024?",
+    "key_facts": ["June 19", "Wednesday", "Juneteenth"]
+  },
+  {
+    "id": "Q07",
+    "topic": "Holidays",
+    "question": "How many floating holidays do employees receive per year?",
+    "key_facts": ["2 floating holidays", "discretion", "calendar year"]
+  },
+  {
+    "id": "Q08",
+    "topic": "Expenses",
+    "question": "What is the maximum reimbursable hotel rate for domestic travel?",
+    "key_facts": ["$200", "per night", "domestic"]
+  },
+  {
+    "id": "Q09",
+    "topic": "Expenses",
+    "question": "What is the daily meal allowance for domestic business travel?",
+    "key_facts": ["$75", "per day", "domestic", "meals"]
+  },
+  {
+    "id": "Q10",
+    "topic": "Expenses",
+    "question": "Within how many days must expenses be submitted for reimbursement?",
+    "key_facts": ["30 calendar days", "30 days", "Expensify"]
+  },
+  {
+    "id": "Q11",
+    "topic": "Expenses",
+    "question": "What expense approval is required for purchases over $2,000?",
+    "key_facts": ["Manager", "Finance", "VP", "2000"]
+  },
+  {
+    "id": "Q12",
+    "topic": "Remote Work",
+    "question": "How many days per week must hybrid employees be on-site?",
+    "key_facts": ["2 days", "minimum", "Tuesday", "Thursday"]
+  },
+  {
+    "id": "Q13",
+    "topic": "Remote Work",
+    "question": "What is the home office setup stipend for full-time remote employees?",
+    "key_facts": ["$500", "one-time", "stipend", "remote"]
+  },
+  {
+    "id": "Q14",
+    "topic": "Remote Work",
+    "question": "What are the core hours that remote employees must be available?",
+    "key_facts": ["10am", "3pm", "core hours"]
+  },
+  {
+    "id": "Q15",
+    "topic": "Security",
+    "question": "What is the minimum password length required by the security policy?",
+    "key_facts": ["12 characters", "minimum", "password"]
+  },
+  {
+    "id": "Q16",
+    "topic": "Security",
+    "question": "When must a security incident be reported after discovery?",
+    "key_facts": ["1 hour", "incident", "report"]
+  },
+  {
+    "id": "Q17",
+    "topic": "Security",
+    "question": "Is multi-factor authentication required for remote access?",
+    "key_facts": ["mandatory", "MFA", "VPN", "remote access"]
+  },
+  {
+    "id": "Q18",
+    "topic": "Benefits",
+    "question": "What percentage of medical insurance premiums does Acme Corp cover for employees?",
+    "key_facts": ["80%", "employee-only", "premium", "medical"]
+  },
+  {
+    "id": "Q19",
+    "topic": "Benefits",
+    "question": "How much does the company match for 401(k) contributions?",
+    "key_facts": ["4%", "match", "100%", "vested"]
+  },
+  {
+    "id": "Q20",
+    "topic": "Benefits",
+    "question": "How many weeks of paid parental leave does the primary caregiver receive?",
+    "key_facts": ["16 weeks", "primary caregiver", "parental leave", "fully paid"]
+  },
+  {
+    "id": "Q21",
+    "topic": "Benefits",
+    "question": "What is the annual learning and development stipend per employee?",
+    "key_facts": ["$1,500", "L&D", "learning", "stipend"]
+  },
+  {
+    "id": "Q22",
+    "topic": "Code of Conduct",
+    "question": "What is the anonymous ethics hotline number for reporting violations?",
+    "key_facts": ["1-800-555-ETHICS", "anonymous", "hotline", "24/7"]
+  },
+  {
+    "id": "Q23",
+    "topic": "Code of Conduct",
+    "question": "What happens to employees who retaliate against someone who reports a conduct violation?",
+    "key_facts": ["prohibited", "strictly prohibited", "retaliation"]
+  },
+  {
+    "id": "Q24",
+    "topic": "Onboarding",
+    "question": "Within how many days must new employees complete benefits enrollment?",
+    "key_facts": ["5 business days", "enrollment", "benefits", "Workday"]
+  },
+  {
+    "id": "Q25",
+    "topic": "Onboarding",
+    "question": "What mandatory training must be completed within 30 days of hire?",
+    "key_facts": ["Security Awareness", "Code of Conduct", "Anti-Harassment", "Data Privacy"]
+  },
+  {
+    "id": "Q26",
+    "topic": "Travel",
+    "question": "What class of airfare is allowed for domestic flights?",
+    "key_facts": ["economy class", "domestic", "airfare"]
+  },
+  {
+    "id": "Q27",
+    "topic": "Travel",
+    "question": "What is the IRS mileage reimbursement rate for personal car use in 2024?",
+    "key_facts": ["$0.67", "per mile", "mileage", "2024"]
+  },
+  {
+    "id": "Q28",
+    "topic": "Performance",
+    "question": "When does the annual performance review cycle take place?",
+    "key_facts": ["December", "annual review", "December 1-31"]
+  },
+  {
+    "id": "Q29",
+    "topic": "Performance",
+    "question": "What merit increase percentage is given to employees rated Exceptional (5)?",
+    "key_facts": ["6-10%", "exceptional", "rating 5"]
+  },
+  {
+    "id": "Q30",
+    "topic": "Data Privacy",
+    "question": "How long does Acme Corp retain employee HR records after employment ends?",
+    "key_facts": ["7 years", "HR records", "employment", "retention"]
+  }
+]
