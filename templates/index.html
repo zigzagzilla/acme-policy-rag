@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acme Corp Policy Assistant</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+    header .logo { font-size: 22px; }
+    header h1 { font-size: 18px; font-weight: 600; }
+    header p { font-size: 12px; color: #a0aec0; margin-top: 2px; }
+
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .message.user { flex-direction: row-reverse; }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .message.user .avatar { background: #4a6cf7; color: #fff; }
+    .message.assistant .avatar { background: #1a1a2e; color: #fff; }
+
+    .bubble {
+      max-width: 74%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .message.user .bubble {
+      background: #4a6cf7;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    .message.assistant .bubble {
+      background: #fff;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .sources-section {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e8ecf0;
+      font-size: 12px;
+      color: #718096;
+    }
+    .sources-section strong { color: #4a5568; }
+    .source-tag {
+      display: inline-block;
+      background: #eef2ff;
+      color: #4a6cf7;
+      border-radius: 6px;
+      padding: 2px 8px;
+      margin: 2px 3px 2px 0;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .snippets { margin-top: 8px; }
+    .snippet {
+      background: #f7f9fc;
+      border-left: 3px solid #4a6cf7;
+      padding: 6px 10px;
+      border-radius: 0 6px 6px 0;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+    .snippet .snippet-source {
+      font-weight: 600;
+      color: #4a6cf7;
+      margin-bottom: 2px;
+      font-size: 11px;
+    }
+
+    .meta-line {
+      font-size: 11px;
+      color: #a0aec0;
+      margin-top: 6px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 12px 16px;
+    }
+    .typing-indicator span {
+      width: 7px; height: 7px;
+      background: #a0aec0;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+
+    .welcome-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .welcome-card h2 { font-size: 20px; margin-bottom: 8px; color: #1a1a2e; }
+    .welcome-card p { color: #718096; font-size: 14px; margin-bottom: 20px; }
+    .suggested-questions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .suggestion {
+      background: #eef2ff;
+      color: #4a6cf7;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .suggestion:hover { background: #dde6ff; }
+
+    .input-area {
+      padding: 16px 24px;
+      background: #fff;
+      border-top: 1px solid #e8ecf0;
+      flex-shrink: 0;
+    }
+    .input-row {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    textarea {
+      flex: 1;
+      resize: none;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      line-height: 1.5;
+      max-height: 140px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    textarea:focus { border-color: #4a6cf7; }
+
+    button#send-btn {
+      background: #4a6cf7;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    button#send-btn:hover { background: #3b5de7; }
+    button#send-btn:disabled { background: #a0aec0; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🏢</div>
+    <div>
+      <h1>Acme Corp Policy Assistant</h1>
+      <p>Ask me anything about company policies and procedures</p>
+    </div>
+  </header>
+
+  <div class="chat-container" id="chat">
+    <div class="welcome-card">
+      <h2>👋 How can I help you?</h2>
+      <p>I can answer questions about Acme Corp's policies. Try one of these:</p>
+      <div class="suggested-questions">
+        <button class="suggestion" onclick="askSuggestion(this)">How many PTO days do I get?</button>
+        <button class="suggestion" onclick="askSuggestion(this)">What are the company holidays in 2024?</button>
+        <button class="suggestion" onclick="askSuggestion(this)">What is the expense limit for hotels?</button>
+        <button class="suggestion" onclick="askSuggestion(this)">What are the remote work requirements?</button>
+        <button class="suggestion" onclick="askSuggestion(this)">How do I report a security incident?</button>
+        <button class="suggestion" onclick="askSuggestion(this)">What is the parental leave policy?</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <div class="input-row">
+      <textarea id="question" rows="1" placeholder="Ask about company policies…" maxlength="2000"></textarea>
+      <button id="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const questionInput = document.getElementById('question');
+    const sendBtn = document.getElementById('send-btn');
+
+    questionInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+    questionInput.addEventListener('input', () => {
+      questionInput.style.height = 'auto';
+      questionInput.style.height = Math.min(questionInput.scrollHeight, 140) + 'px';
+    });
+
+    function askSuggestion(btn) {
+      questionInput.value = btn.textContent;
+      sendMessage();
+    }
+
+    function addMessage(role, content) {
+      const div = document.createElement('div');
+      div.className = `message ${role}`;
+      div.innerHTML = `
+        <div class="avatar">${role === 'user' ? '👤' : '🤖'}</div>
+        <div class="bubble">${content}</div>
+      `;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+      return div;
+    }
+
+    function addTypingIndicator() {
+      const div = document.createElement('div');
+      div.className = 'message assistant';
+      div.id = 'typing';
+      div.innerHTML = `
+        <div class="avatar">🤖</div>
+        <div class="bubble">
+          <div class="typing-indicator">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      `;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+      const el = document.getElementById('typing');
+      if (el) el.remove();
+    }
+
+    function renderAssistantMessage(data) {
+      const answerHtml = escapeHtml(data.answer).replace(/\n/g, '<br>');
+
+      let sourcesHtml = '';
+      if (data.sources && data.sources.length > 0) {
+        const tags = data.sources.map(s => `<span class="source-tag">📄 ${escapeHtml(s.title)}</span>`).join('');
+        let snippetsHtml = '';
+        if (data.snippets && data.snippets.length > 0) {
+          snippetsHtml = '<div class="snippets">' + data.snippets.map(sn => `
+            <div class="snippet">
+              <div class="snippet-source">📄 ${escapeHtml(sn.source_title)}</div>
+              ${escapeHtml(sn.text)}
+            </div>
+          `).join('') + '</div>';
+        }
+        sourcesHtml = `
+          <div class="sources-section">
+            <strong>Sources:</strong> ${tags}
+            ${snippetsHtml}
+            <div class="meta-line">⏱ ${data.latency_ms}ms · ${data.retrieved_chunks} chunks retrieved</div>
+          </div>
+        `;
+      } else {
+        sourcesHtml = `<div class="meta-line">⏱ ${data.latency_ms}ms</div>`;
+      }
+
+      return `${answerHtml}${sourcesHtml}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    async function sendMessage() {
+      const question = questionInput.value.trim();
+      if (!question || sendBtn.disabled) return;
+
+      sendBtn.disabled = true;
+      questionInput.value = '';
+      questionInput.style.height = 'auto';
+
+      addMessage('user', escapeHtml(question));
+      addTypingIndicator();
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question }),
+        });
+        const data = await res.json();
+        removeTypingIndicator();
+
+        if (data.error) {
+          addMessage('assistant', `⚠️ ${escapeHtml(data.error)}`);
+        } else {
+          const div = addMessage('assistant', renderAssistantMessage(data));
+        }
+      } catch (err) {
+        removeTypingIndicator();
+        addMessage('assistant', '⚠️ Network error. Please try again.');
+      } finally {
+        sendBtn.disabled = false;
+        questionInput.focus();
+      }
+    }
+  </script>
+</body>
+</html>

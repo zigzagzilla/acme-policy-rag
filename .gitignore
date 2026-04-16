@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# ChromaDB (generated at runtime — not committed)
+chroma_db/
+
+# HuggingFace model cache (large, auto-downloaded)
+.cache/
+
+# Sentence-transformers cache
+sentence_transformers_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Evaluation outputs (optional — comment out if you want to commit results)
+# evaluation/results.json
