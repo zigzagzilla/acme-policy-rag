@@ -99,7 +99,13 @@
       margin: 2px 3px 2px 0;
       font-size: 11px;
       font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
     }
+    .source-tag:hover { background: #dde6ff; text-decoration: underline; }
+    .snippet-source a { color: #4a6cf7; text-decoration: none; font-weight: 600; font-size: 11px; }
+    .snippet-source a:hover { text-decoration: underline; }
     .snippets { margin-top: 8px; }
     .snippet {
       background: #f7f9fc;
@@ -301,15 +307,23 @@
 
       let sourcesHtml = '';
       if (data.sources && data.sources.length > 0) {
-        const tags = data.sources.map(s => `<span class="source-tag">📄 ${escapeHtml(s.title)}</span>`).join('');
+        const tags = data.sources.map(s => {
+          const href = `/policies/${encodeURIComponent(s.file)}`;
+          return `<a class="source-tag" href="${href}" target="_blank" rel="noopener" title="View source: ${escapeHtml(s.title)}">📄 ${escapeHtml(s.title)}</a>`;
+        }).join('');
         let snippetsHtml = '';
         if (data.snippets && data.snippets.length > 0) {
-          snippetsHtml = '<div class="snippets">' + data.snippets.map(sn => `
-            <div class="snippet">
-              <div class="snippet-source">📄 ${escapeHtml(sn.source_title)}</div>
-              ${escapeHtml(sn.text)}
-            </div>
-          `).join('') + '</div>';
+          snippetsHtml = '<div class="snippets">' + data.snippets.map(sn => {
+            const src = data.sources.find(s => s.title === sn.source_title);
+            const href = src ? `/policies/${encodeURIComponent(src.file)}` : '#';
+            return `
+              <div class="snippet">
+                <div class="snippet-source">
+                  <a href="${href}" target="_blank" rel="noopener">📄 ${escapeHtml(sn.source_title)}</a>
+                </div>
+                ${escapeHtml(sn.text)}
+              </div>`;
+          }).join('') + '</div>';
         }
         sourcesHtml = `
           <div class="sources-section">

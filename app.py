@@ -8,7 +8,8 @@ Endpoints:
 """
 
 import os
-from flask import Flask, render_template, request, jsonify
+from pathlib import Path
+from flask import Flask, render_template, request, jsonify, send_file, abort
 from dotenv import load_dotenv
 from rag import answer_question, get_collection, get_embed_model
 
@@ -62,8 +63,19 @@ def chat():
         app.logger.error(f"Error answering question: {e}")
         return jsonify({
             "error": "An error occurred while processing your question. Please try again.",
-            "detail": str(e),
         }), 500
+
+
+@app.route("/policies/<path:filename>")
+def serve_policy(filename):
+    """Serve a policy document file for inline viewing."""
+    policies_dir = Path(os.getenv("POLICIES_DIR", "./policies")).resolve()
+    file_path = (policies_dir / filename).resolve()
+    if not str(file_path).startswith(str(policies_dir)):
+        abort(403)
+    if not file_path.exists():
+        abort(404)
+    return send_file(file_path, mimetype="text/plain; charset=utf-8")
 
 
 @app.route("/health")
