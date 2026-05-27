@@ -60,9 +60,6 @@ def score_groundedness_heuristic(answer: str, key_facts: list) -> float:
     return round(hits / len(key_facts), 4)
 
 
-
-
-
 def build_context_from_result(result: dict) -> str:
     """Build a context string from the snippets returned by the RAG pipeline."""
     snippets = result.get("snippets", [])
@@ -72,20 +69,11 @@ def build_context_from_result(result: dict) -> str:
     return "\n\n".join(parts)
 
 
-def run_evaluation(questions_path: str, output_path: str, use_llm_judge: bool = True):
-    import openai
-
+def run_evaluation(questions_path: str, output_path: str):
     with open(questions_path, "r") as f:
         questions = json.load(f)
 
     print(f"Running evaluation on {len(questions)} questions...\n")
-
-    api_key_env = os.getenv("LLM_API_KEY_ENV", "OPENAI_API_KEY")
-    api_key = os.getenv(api_key_env, "")
-    base_url = os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1")
-    judge_model = os.getenv("LLM_MODEL", "openrouter/free")
-
-    llm_client = openai.OpenAI(api_key=api_key, base_url=base_url)
 
     print("Pre-loading embedding model and ChromaDB...")
     get_embed_model()
@@ -137,23 +125,16 @@ def run_evaluation(questions_path: str, output_path: str, use_llm_judge: bool = 
 
         heuristic_ground = score_groundedness_heuristic(answer, key_facts)
 
-        llm_ground = None
-        if use_llm_judge and sources:
-            context = build_context_from_result(result)
-            llm_ground = score_groundedness_llm(question, answer, context, llm_client, judge_model)
-            time.sleep(0.5)
-
-        final_groundedness = llm_ground if llm_ground is not None else heuristic_ground
+        final_groundedness = heuristic_ground
 
         citation_acc = score_citation_accuracy(answer, sources)
 
         groundedness_scores.append(final_groundedness)
         citation_scores.append(citation_acc)
 
-        judge_label = "LLM" if llm_ground is not None else "heuristic"
         ground_pct = round(final_groundedness * 100)
         cite_pct = round(citation_acc * 100)
-        print(f"    Latency: {latency_ms}ms | Groundedness: {ground_pct}% ({judge_label}) | Citation: {cite_pct}%")
+        print(f"    Latency: {latency_ms}ms | Groundedness: {ground_pct}% (heuristic) | Citation: {cite_pct}%")
 
         results.append({
             "id": qid,
@@ -163,7 +144,7 @@ def run_evaluation(questions_path: str, output_path: str, use_llm_judge: bool = 
             "sources": [s["title"] for s in sources],
             "latency_ms": latency_ms,
             "groundedness": final_groundedness,
-            "groundedness_method": judge_label,
+            "groundedness_method": "heuristic",
             "heuristic_groundedness": heuristic_ground,
             "citation_accuracy": citation_acc,
             "error": False,
@@ -474,5 +455,4 @@ if __name__ == "__main__":
         run_evaluation(
             questions_path=args.questions,
             output_path=args.output,
-            use_llm_judge=not args.no_llm_judge,
         )
