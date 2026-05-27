@@ -60,45 +60,7 @@ def score_groundedness_heuristic(answer: str, key_facts: list) -> float:
     return round(hits / len(key_facts), 4)
 
 
-def score_groundedness_llm(question: str, answer: str, context: str, client, model: str) -> float:
-    """
-    LLM-as-judge groundedness: ask the LLM to assess whether the answer is
-    factually grounded in the provided context. Returns 1.0, 0.5, or 0.0.
-    """
-    judge_prompt = f"""You are evaluating whether a RAG system answer is grounded in the provided context.
 
-QUESTION: {question}
-
-CONTEXT (retrieved policy excerpts):
-{context[:2000]}
-
-ANSWER TO EVALUATE:
-{answer[:800]}
-
-Task: Decide if the answer is factually supported by the context above.
-- Reply GROUNDED if the answer is fully supported by the context.
-- Reply PARTIAL if the answer is partly supported but adds unverified information.
-- Reply UNGROUNDED if the answer contains significant claims not in the context.
-
-Reply with exactly one word: GROUNDED, PARTIAL, or UNGROUNDED."""
-
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=[{"role": "user", "content": judge_prompt}],
-            max_tokens=10,
-            temperature=0.0,
-        )
-        verdict = response.choices[0].message.content.strip().upper()
-        if "GROUNDED" in verdict and "PARTIAL" not in verdict and "UN" not in verdict:
-            return 1.0
-        elif "PARTIAL" in verdict:
-            return 0.5
-        else:
-            return 0.0
-    except Exception as e:
-        print(f"    [LLM judge error: {e}] — falling back to heuristic")
-        return None
 
 
 def build_context_from_result(result: dict) -> str:
