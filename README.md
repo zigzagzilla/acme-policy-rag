@@ -8,7 +8,7 @@ A Retrieval-Augmented Generation (RAG) application that answers employee questio
 - **Vector Store**: ChromaDB (local persistent storage)
 - **LLM**: OpenRouter free tier (`meta-llama/llama-3.1-8b-instruct:free`)
 - **Framework**: Flask (Python)
-- **Corpus**: 10 synthetic Acme Corp policy documents (Markdown)
+- **Corpus**: 12 synthetic Acme Corp policy documents (Markdown)
 
 ## Setup
 
