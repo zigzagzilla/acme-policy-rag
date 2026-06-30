@@ -2,6 +2,17 @@
 
 A Retrieval-Augmented Generation (RAG) application that answers employee questions about company policies. Built with Flask, ChromaDB, sentence-transformers, and OpenRouter (free LLM API).
 
+## Live Demo
+
+The app is publicly hosted and ready to use — no setup required:
+
+**[https://ai-rag-exercise.replit.app](https://ai-rag-exercise.replit.app)**
+
+Try asking it questions like:
+- *"How many PTO days do new employees get?"*
+- *"What is the travel reimbursement limit for flights?"*
+- *"What are the password requirements?"*
+
 ## Architecture
 
 - **Embeddings**: `all-MiniLM-L6-v2` via sentence-transformers (local, free)
@@ -12,6 +23,8 @@ A Retrieval-Augmented Generation (RAG) application that answers employee questio
 
 ## Setup
 
+> **Just want to try it?** Use the [live demo](https://ai-rag-exercise.replit.app) above — no installation needed.
+
 ### 1. Prerequisites
 
 - Python 3.10+
@@ -20,8 +33,8 @@ A Retrieval-Augmented Generation (RAG) application that answers employee questio
 ### 2. Clone and create virtual environment
 
 ```bash
-git clone <your-repo-url>
-cd <repo-directory>
+git clone https://github.com/zigzagzilla/acme-policy-rag
+cd acme-policy-rag
 python -m venv .venv
 source .venv/bin/activate        # On Windows: .venv\Scripts\activate
 ```
