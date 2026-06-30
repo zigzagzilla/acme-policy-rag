@@ -183,9 +183,45 @@ def answer_question(question: str, k: int = TOP_K):
             continue
 
     if response is None:
-        raise last_error
+        latency_ms = round((time.time() - start_time) * 1000)
+        error_hint = str(last_error)
+        if "429" in error_hint or "rate" in error_hint.lower():
+            msg = (
+                "The AI service is temporarily rate-limited. "
+                "Please wait a moment and try again. "
+                "(The relevant policy sources have been retrieved below.)"
+            )
+        else:
+            msg = (
+                "The AI service is temporarily unavailable. "
+                "Please try again in a few seconds. "
+                "(The relevant policy sources have been retrieved below.)"
+            )
+        sources_for_error = []
+        seen = set()
+        for chunk in chunks:
+            if chunk["source_title"] not in seen:
+                seen.add(chunk["source_title"])
+                sources_for_error.append({
+                    "title": chunk["source_title"],
+                    "file": chunk["source_file"],
+                })
+        return {
+            "answer": msg,
+            "sources": sources_for_error,
+            "snippets": [],
+            "latency_ms": latency_ms,
+            "retrieved_chunks": len(chunks),
+        }
 
     answer_text = response.choices[0].message.content.strip()
+
+    if not answer_text:
+        answer_text = (
+            "The AI model returned an empty response. "
+            "Please try again — this is usually a temporary issue with the free-tier model."
+        )
+
     latency_ms = round((time.time() - start_time) * 1000)
 
     if "[Source:" not in answer_text and chunks:
